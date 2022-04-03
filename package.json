@@ -1,0 +1,31 @@
+{
+  "name": "discord-sm",
+  "version": "0.1.0-dev.03042022.1359",
+  "description": "Multifunctional Discord bot for managing game servers via rcon",
+  "main": "start.js",
+  "scripts": {
+    "start": "node start.js",
+    "build": "rimraf build && tsc -p tsconfig.json",
+    "build:dev": "tsc -p tsconfig.json"
+  },
+  "keywords": [
+    "discord",
+    "sourcemod",
+    "discordSM",
+    "discordBot",
+    "discord.js"
+  ],
+  "author": "xyligan",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/gamedig": "^3.0.2",
+    "@types/ms": "^0.7.31",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.7.0"
+  },
+  "dependencies": {
+    "discord.js": "^14.0.0-dev.1648515273-ac4bc3a",
+    "gamedig": "^4.0.2",
+    "ms": "^2.1.3"
+  }
+}
