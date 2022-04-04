@@ -1,0 +1,52 @@
+{
+    "requested": "Requested: {uTag}",
+    "onlyForOwners": "This command is for project owners only!",
+    "onlyForAdmins": "This command is for project administration only!",
+    "commandCooldown": "You must wait **{cTime}** before using the **{cName}** command!",
+
+    "commands": {
+        "logs": {
+            "failConnect": "Failed to connect to the server to receive data!",
+            "failGetFile": "Failed to get file at `{path}`!"
+        },
+
+        "server": {
+            "failFetchData": "Failed to get server information!",
+            "notPlayers": "There are no players on the server...",
+            "unknownName": "Not determined",
+            "unknownTime": "Not determined",
+            "unknownScore": "Not determined",
+            "unknownDescription": "Not determined",
+            "unknownSteamID": "Not determined",
+
+            "playersList": "**NickName:** {nickname} - **Game Time:** {time} - **Kills:** {score}\n",
+
+            "embed": {
+                "title": "{server} - Short Information",
+
+                "fields": {
+                    "map": "Map:",
+                    "description": "Description:",
+                    "id": "SteamID:",
+                    "players": "Players Count:",
+                    "protected": "Password Protected:",
+                    "maxPlayers": "Max Players Count:",
+                    "playersList": "Players List:"
+                }
+            }
+        }
+    },
+
+    "permissions": {
+        "messages": "I don't have enough permissions to send messages on the server!",
+        "embeds": "I don't have enough permissions to send embed messages on the server!",
+
+        "missingUser": "{user}, you do not have sufficient permissions to use this command!",
+        "missingClient": "I don't have enough permissions to run this command!"
+    },
+
+    "status": {
+        "true": "Yes",
+        "false": "No"
+    }
+}

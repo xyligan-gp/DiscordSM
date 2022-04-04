@@ -1,0 +1,4 @@
+[
+    { "type": 1, "text": "Servers Count: {projectsCount}", "url": "https://twitch.tv/twitch" },
+    { "type": 1, "text": "Servers Online: {playersCount}/{slotsCount}", "url": "https://twitch.tv/twitch" }
+]

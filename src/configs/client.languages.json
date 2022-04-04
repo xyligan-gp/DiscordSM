@@ -1,0 +1,5 @@
+[
+    { "tag": "en", "name": "English" },
+    { "tag": "ru", "name": "Russian" },
+    { "tag": "ua", "name": "Ukrainian" }
+]

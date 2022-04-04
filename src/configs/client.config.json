@@ -1,0 +1,8 @@
+{
+    "token": "YOUR_BOT_TOKEN_HERE",
+    "defaultLanguage": "en",
+    "statusChangeInterval": 15000,
+
+    "owners": [],
+    "admins": []
+}
