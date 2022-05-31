@@ -3,11 +3,14 @@ import ClientCommand from '../intefaces/ClientCommand';
 import { query, Type } from 'gamedig';
 import { ApplicationCommandOptionType, GuildMember } from 'discord.js';
 
+import config from '../configs/client.config.json';
+import languages from '../configs/client.languages.json';
+
 import servers from '../configs/client.servers.json';
 
-export = {
+export default {
     name: 'server',
-    description: 'Allows you to view information and server',
+    description: require(`../locales/${languages.find(locale => locale.tag === config.defaultLanguage).name}.json`).commands.server.info,
     cooldown: '10s',
 
     options: [
@@ -21,7 +24,7 @@ export = {
         }
     ],
 
-    run(client, command, subCommand) {
+    run: async(client, command, subCommand) => {
         const member = command.member as GuildMember;
 
         const serverValue = command.options.get('name')?.value as string;
@@ -33,10 +36,10 @@ export = {
         const serverPort = serverInfo[2];
         const serverLogo = serverInfo[3];
 
-        query({ type: serverType as Type, host: serverIP, port: Number(serverPort), maxAttempts: 1, attemptTimeout: 10000, socketTimeout: 1000 }).then(data => {
+        query({ type: serverType as Type, host: serverIP, port: Number(serverPort), maxAttempts: 1, attemptTimeout: 10000, socketTimeout: 1000 }).then((data: any) => {
             let playersList: string = '';
 
-            data.players.forEach(player => {
+            data.players.forEach((player: any) => {
                 if(player.raw?.time) {
                     const hours = Math.floor(player.raw?.time / 3600);
                     const minutes = Math.floor(player.raw?.time / 60 % 60);

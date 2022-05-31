@@ -1,6 +1,4 @@
-class ClientLogger {
-    constructor() {}
-
+export default class ClientLogger {
     public log(message: string): void {
         return console.log(`[Discord SM]: ${message}`);
     }
@@ -9,5 +7,3 @@ class ClientLogger {
         return console.error(`[Discord SM Error]: ${message}`);
     }
 }
-
-export = ClientLogger;

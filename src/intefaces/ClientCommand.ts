@@ -4,7 +4,7 @@ import ClientSubCommand from './ClientSubCommand';
 
 import { ApplicationCommandOptionData, CommandInteraction, PermissionsString } from 'discord.js';
 
-interface ClientCommand {
+export default interface ClientCommand {
     name: string;
     description: string;
     cooldown?: string;
@@ -24,5 +24,3 @@ interface ClientCommand {
 interface CommandRun {
     (client: DiscordSM, command: CommandInteraction, subCommand: ClientSubCommand | null): any | Promise<any>;
 }
-
-export = ClientCommand;

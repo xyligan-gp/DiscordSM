@@ -9,7 +9,7 @@ import { ApplicationCommandOptionData, GuildMember, Util } from 'discord.js';
 import ClientEvent from '../../intefaces/ClientEvent';
 import ClientCommand from '../../intefaces/ClientCommand';
 
-class UtilsManager {
+export default class UtilsManager {
     private client: DiscordSM;
 
     constructor(client: DiscordSM) {
@@ -22,11 +22,11 @@ class UtilsManager {
         this.client = client;
     }
 
-    public initialClient() {
+    public initialClient(): void {
         const clientEvents = readdirSync('./events/client').filter(file => file.endsWith('ts') || file.endsWith('js'));
 
         clientEvents.forEach(clientEvent => {
-            const event: ClientEvent = require(`../../events/client/${clientEvent}`);
+            const event: ClientEvent = require(`../../events/client/${clientEvent}`).default;
 
             this.client.on(event.name || clientEvent.replace('.ts', '').replace('.js', ''), event.run.bind(null, this.client));
         })
@@ -34,7 +34,7 @@ class UtilsManager {
         const clientCommands = readdirSync('./commands').filter(file => file.endsWith('ts') || file.endsWith('js'));
 
         clientCommands.forEach(clientCommand => {
-            const command: ClientCommand = require(`../../commands/${clientCommand}`);
+            const command: ClientCommand = require(`../../commands/${clientCommand}`).default;
 
             this.client.commands.set(command.name, command);
         })
@@ -81,7 +81,7 @@ class UtilsManager {
 
         if(options.fields) {
             options.fields.forEach(field => {
-                embed.addFields({ name: field.name, value: field.value, inline: field?.inline || false });
+                embed.addFields([{ name: field.name, value: field.value, inline: field?.inline || false }]);
             })
         }
         
@@ -131,5 +131,3 @@ class UtilsManager {
         })
     }
 }
-
-export = UtilsManager;

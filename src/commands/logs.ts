@@ -1,14 +1,17 @@
 import ClientCommand from '../intefaces/ClientCommand';
 
 import { writeFileSync } from 'fs';
-import { ApplicationCommandOptionType, MessageAttachment } from 'discord.js';
+import { ApplicationCommandOptionType, Attachment } from 'discord.js';
+
+import config from '../configs/client.config.json';
+import languages from '../configs/client.languages.json';
 
 import logs from '../configs/client.logs.json';
 import ftps from '../configs/client.ftps.json';
 
-export = {
+export default {
     name: 'logs',
-    description: 'Allows you to view server logs',
+    description: require(`../locales/${languages.find(locale => locale.tag === config.defaultLanguage).name}.json`).commands.logs.info,
     cooldown: '10s',
     onlyAdmins: true,
 
@@ -32,7 +35,7 @@ export = {
         }
     ],
 
-    async run(client, command, subCommand) {
+    run: async(client, command, subCommand) => {
         const serverFTP = command.options.get('server')?.value as string;
         const serverLog = command.options.get('log')?.value as string;
 
@@ -54,7 +57,7 @@ export = {
         if(ftpType === 'ftp') {
             client.ftp.access({ host: ftpHost, port: ftpPort, user: ftpUser, password: ftpPass }).then(connectData => {
                 client.ftp.downloadTo(`./logs/${fileName}`, filePath).then(downloadData => {
-                    const attachment = new MessageAttachment(`./logs/${fileName}`, fileName);
+                    const attachment = new Attachment(`./logs/${fileName}`, fileName);
 
                     return command.reply({ files: [attachment] });
                 }).catch((error: Error) => {
@@ -72,7 +75,7 @@ export = {
                 client.sftp.getFileData(filePath).then((downloadData: any) => {
                     writeFileSync(`./logs/${fileName}`, downloadData, { encoding: 'utf-8' });
 
-                    const attachment = new MessageAttachment(`./logs/${fileName}`, fileName);
+                    const attachment = new Attachment(`./logs/${fileName}`, fileName);
 
                     return command.reply({ files: [attachment] })
                 }).catch((error: Error) => {

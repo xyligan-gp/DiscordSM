@@ -1,7 +1,7 @@
 import ClientEvent from '../../intefaces/ClientEvent';
 
-export = {
-    run(client) {
+export default {
+    run: async(client) => {
         client.utils.initialStatuses();
         client.utils.registerCommands();
         

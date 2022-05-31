@@ -6,11 +6,15 @@
 
     "commands": {
         "logs": {
+            "info": "Allows you to view the contents of server logs",
+
             "failConnect": "Failed to connect to the server to receive data!",
             "failGetFile": "Failed to get file at `{path}`!"
         },
 
         "server": {
+            "info": "Allows you to view server information",
+
             "failFetchData": "Failed to get server information!",
             "notPlayers": "There are no players on the server...",
             "unknownName": "Not determined",

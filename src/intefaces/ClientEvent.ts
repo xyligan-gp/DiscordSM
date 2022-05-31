@@ -1,6 +1,6 @@
 import DiscordSM from '../classes/Client';
 
-interface ClientEvent {
+export default interface ClientEvent {
     name?: string;
     run: EventRun;
 }
@@ -8,5 +8,3 @@ interface ClientEvent {
 interface EventRun {
     (client: DiscordSM, ...args: any[]): any | Promise<any>;
 }
-
-export = ClientEvent;

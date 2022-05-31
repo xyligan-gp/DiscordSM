@@ -4,10 +4,10 @@ import { ApplicationCommandOptionType, GuildMember, Interaction } from 'discord.
 import ClientEvent from '../../intefaces/ClientEvent';
 import ClientSubCommand from '../../intefaces/ClientSubCommand';
 
-export = {
+export default {
     name: 'interactionCreate',
     
-    run(client, interaction: Interaction) {
+    run: async(client, interaction: Interaction) => {
         if(!interaction.inGuild()) return;
         if(!interaction.isChatInputCommand()) return;
 
@@ -17,11 +17,11 @@ export = {
         const clientCommand = client.commands.get(cmd);
 
         if(clientCommand) {
-            if(!guild.me.permissions.has('SendMessages')) return member.send({ content: client.phrases.permissions.messages });
-            if(!guild.me.permissions.has('EmbedLinks')) return member.send({ content: client.phrases.permissions.embeds });
+            if(!guild.members.me.permissions.has('SendMessages')) return member.send({ content: client.phrases.permissions.messages });
+            if(!guild.members.me.permissions.has('EmbedLinks')) return member.send({ content: client.phrases.permissions.embeds });
 
             if(clientCommand.permissions?.client?.length) {
-                if(!guild.me.permissions.has(clientCommand.permissions.client)) return interaction.reply({ embeds: [client.utils.buildEmbed({ description: client.phrases.permissions.missingClient }, null)] });
+                if(!guild.members.me.permissions.has(clientCommand.permissions.client)) return interaction.reply({ embeds: [client.utils.buildEmbed({ description: client.phrases.permissions.missingClient }, null)] });
             }
 
             if(clientCommand.permissions?.user?.length) {

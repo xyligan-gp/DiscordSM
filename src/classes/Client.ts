@@ -24,7 +24,7 @@ import English from '../locales/English.json';
 import Russian from '../locales/Russian.json';
 import Ukrainian from '../locales/Ukrainian.json';
 
-class DiscordSM extends Client {
+export default class DiscordSM extends Client {
     public configs: DefaultConfig = {
         main: config,
         servers: servers,
@@ -69,5 +69,3 @@ class DiscordSM extends Client {
         this.login(this.configs.main.token);
     }
 }
-
-export = DiscordSM;
